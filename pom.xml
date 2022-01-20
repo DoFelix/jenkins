@@ -13,9 +13,11 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>demo</name>
     <description>Demo project for Spring Boot</description>
+
     <properties>
         <java.version>1.8</java.version>
     </properties>
+
     <packaging>war</packaging>
 
     <dependencies>
@@ -34,9 +36,19 @@
     <build>
         <finalName>demo</finalName>
         <plugins>
+            <!--<plugin>-->
+                <!--<groupId>org.springframework.boot</groupId>-->
+                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--</plugin>-->
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration> <!-- Exclude JCL and LOG4J since all logging should go through SLF4J. Note that we're excluding log4j-<version>.jar but keeping log4j-over-slf4j-<version>.jar -->
+                    <packagingExcludes>
+                        WEB-INF/lib/tomcat-embed-*.jar,
+                        WEB-INF/lib/spring-boot-starter-tomcat-*.jar
+                    </packagingExcludes>
+                </configuration>
             </plugin>
         </plugins>
     </build>
