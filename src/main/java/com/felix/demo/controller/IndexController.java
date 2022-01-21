@@ -19,6 +19,13 @@ public class IndexController {
         return "hi world";
     }
 
+    @RequestMapping("/bye")
+    @ResponseBody
+    public String sayBye(){
+
+        return "bye world";
+    }
+
     public static void main(String[] args) {
 
     }
